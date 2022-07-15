@@ -9,8 +9,8 @@ from lib_holdings.api import ApiSession
 @click.argument('infile_ocns', required=True, type=click.Path(exists=True))
 @click.argument('infile_symb', required=True, type=click.Path(exists=True))
 @click.argument('out_folder', required=True)
-@click.option("--key", prompt="Your OCLC API key", help="OCLC API key.", hide_input=True)
-@click.option("--secret", prompt="Your OCLC API secret", help="OCLC API secret.", hide_input=True)
+@click.option("--key", prompt="Your OCLC API key", help="OCLC API key.", hide_input=False)
+@click.option("--secret", prompt="Your OCLC API secret", help="OCLC API secret.", hide_input=False)
 def main(**kwargs):
     # create output folder (if it does not exist already)
     if not os.path.exists(kwargs.get('out_folder')):

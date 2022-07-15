@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lib-holdings"
-version = "1.0.3"
+version = "1.0.4"
 description = "CLI tool for retrieving holding counts for a list of OCNs and libraries"
 authors = ["Max Paulus"]
 readme = "README.md"
@@ -9,10 +9,10 @@ packages = [{include = "lib_holdings"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-requests = "*"
-requests-oauthlib = "*"
-pandas = "*"
-click = "*"
+click = "8.1.3"
+pandas = "1.4.2"
+requests = "2.27.1"
+requests-oauthlib = "1.3.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
