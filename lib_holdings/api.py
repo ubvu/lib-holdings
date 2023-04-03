@@ -29,19 +29,15 @@ class ApiSession:
         :param symbols: list of institute symbols
         :return: holdings: per ocn and institute
         """
-        holdings_data = {}
-        for symbol in symbols:
-            for ocn in ocns:
-                url = (
-                    f'https://americas.discovery.api.oclc.org/worldcat/search/v2/bibs-detailed-holdings?'
-                    f'oclcNumber={ocn}&'
-                    f'heldBySymbol={symbol}'
-                )
-                r = self.do_request(url)
-                if symbol in holdings_data:
-                    holdings_data[symbol].append(r.json())
-                else:
-                    holdings_data[symbol] = [r.json()]
+        holdings_data = []
+        for ocn in ocns:
+            url = (
+                f'https://americas.discovery.api.oclc.org/worldcat/search/v2/bibs-detailed-holdings?'
+                f'oclcNumber={ocn}&'
+                f'heldBySymbol={",".join(symbols)}'
+            )
+            r = self.do_request(url)
+            holdings_data.append(r.json())
         return holdings_data
 
     def extract_record_type(self, ocns):

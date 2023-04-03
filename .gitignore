@@ -1,6 +1,8 @@
 /venv/
-/output/
-/test/
+/venv_test/
+/tests/
+/out/
 /dist/
 /.idea/
-/venv_test/
+/lib_holdings/__pycache__/
+test.pypi.token.txt
