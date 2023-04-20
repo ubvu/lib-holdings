@@ -9,3 +9,4 @@
 /.idea/
 /lib_holdings/__pycache__/
 test.pypi.token.txt
+pypi.token.txt
