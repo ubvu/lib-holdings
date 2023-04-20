@@ -32,9 +32,9 @@ def main(**kwargs):
             print('holdings extracted')
             record_types = transform_records(session.extract_record_type(ocns_sub))
             print('record types extracted')
-            holdings_with_type = holdings.merge(record_types, how='left')
+            holdings = holdings.merge(record_types, how='left')
             # store temporary batch
-            holdings_with_type.to_csv(f'{kwargs.get("out_folder")}/temp/{i}-{i+n}.csv', index=False)
+            holdings.to_csv(f'{kwargs.get("out_folder")}/temp/{i}-{i+n}.csv', index=False)
         except Exception as e:
             click.echo(traceback.format_exc())
             click.echo(f'{e}\n{e.__class__}\nerror in batch {i}-{i+n}.\ntry again with start = {i}')
@@ -50,21 +50,24 @@ def main(**kwargs):
 
 
 def transform_holdings(data):
-    to_df = []
+    ocns = []
+    holdings = []
     for item in data:
         holding = item['briefRecords'][0]['institutionHolding']
-        to_df.append({'ocn': item['briefRecords'][0]['oclcNumber'],
-                      'holdings': holding['totalHoldingCount']})
-    return pd.DataFrame(to_df, dtype=object)
+        ocns.append(item['briefRecords'][0]['oclcNumber'])
+        holdings.append(holding['totalHoldingCount'])
+    return pd.DataFrame({'ocn': ocns, 'holdings': holdings}, dtype=object)
 
 
 def transform_records(records):
+    ocns = []
     record_types = []
     for ocn in records:
         if len(records[ocn]) > 0:
-            record_types.append({'ocn': ocn, 'recordType': records[ocn][0]['recordType']})
+            ocns.append(ocn)
+            record_types.append(records[ocn][0]['recordType'])
             # the multiple entries are holdings
-    return pd.DataFrame(record_types, dtype=object)
+    return pd.DataFrame({'ocn': ocns, 'recordType': record_types}, dtype=object)
 
 
 if __name__ == "__main__":

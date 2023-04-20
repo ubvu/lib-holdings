@@ -1,6 +1,9 @@
 /venv/
 /venv_test/
-/tests/
+/tests/config.py
+/tests/out/
+/tests/files/
+/tests/__pycache__/
 /out/
 /dist/
 /.idea/
