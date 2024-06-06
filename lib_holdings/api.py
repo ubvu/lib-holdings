@@ -8,7 +8,7 @@ class ApiSession:
 
     def __init__(self, oclc_key, oclc_secret):
         client = BackendApplicationClient(client_id=oclc_key,
-                                          scope=['wcapi', 'WMS_COLLECTION_MANAGEMENT'])
+                                          scope=['wcapi:view_holdings', 'WMS_COLLECTION_MANAGEMENT:read_LHR'])
         self.session = OAuth2Session(client=client)
         self.auth = HTTPBasicAuth(oclc_key, oclc_secret)
         self.token = self.get_token()

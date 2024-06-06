@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lib-holdings"
-version = "1.0.0"
+version = "2.0.0"
 description = "CLI tool for retrieving holding counts for a list of OCNs and libraries"
 authors = ["Max Paulus"]
 readme = "README.md"
