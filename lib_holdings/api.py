@@ -49,7 +49,7 @@ class ApiSession:
         records = {}
         for ocn in ocns:
             url = (
-                f'https://circ.sd00.worldcat.org/LHR?'
+                f'https://circ.sd02.worldcat.org/LHR?'
                 f'q=oclc%3A{ocn}'
             )
             r = self.do_request(url)
