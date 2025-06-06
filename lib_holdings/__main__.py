@@ -30,9 +30,9 @@ def main(**kwargs):
             ocns_sub = ocns[i:i+n]
             holdings = transform_holdings(session.extract_holdings(ocns_sub, symbols))
             print('holdings extracted')
-            record_types = transform_records(session.extract_record_type(ocns_sub))
-            print('record types extracted')
-            holdings = holdings.merge(record_types, how='left')
+            #record_types = transform_records(session.extract_record_type(ocns_sub))
+            #print('record types extracted')
+            #holdings = holdings.merge(record_types, how='left')
             # store temporary batch
             holdings.to_csv(f'{kwargs.get("out_folder")}/temp/{i}-{i+n}.csv', index=False)
         except Exception as e:
